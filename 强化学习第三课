@@ -1,0 +1,61 @@
+# 强化学习第三课 贝尔曼最优公式
+
+对每个状态都选择action value 最大的，不断迭代就可以得到最优的策略
+
+![](file:///Users/huangxihao/Library/Application%20Support/marktext/images/2023-09-27-21-05-30-image.png?msec=1699348529405)
+
+如何定义最优的策略，对于每个状态，采取该策略比其他策略得到的state value都要大
+
+引出贝尔曼最优公式
+
+![](file:///Users/huangxihao/Library/Application%20Support/marktext/images/2023-09-27-21-07-07-image.png?msec=1699348529409)
+
+该公式跟贝尔曼公式的区别是多了一个max
+
+就是策略是不确定的。不过概率模型跟reward仍然是确定的
+
+借用一个例子来理解一个等式，但是存在两个未知量如何求解
+
+![](file:///Users/huangxihao/Library/Application%20Support/marktext/images/2023-09-27-21-11-04-image.png?msec=1699348529424)
+
+![](file:///Users/huangxihao/Library/Application%20Support/marktext/images/2023-09-27-21-13-50-image.png?msec=1699348529420)
+
+![](file:///Users/huangxihao/Library/Application%20Support/marktext/images/2023-09-27-21-14-46-image.png?msec=1699348529412)
+
+这样就告诉了想要得到最大的就是找到action value最大的值的动作
+
+整体来说，为了求解贝尔曼最优公式，用到了
+
+1.固定一个变量。 2.选取权重最大的那个动作
+
+接下来先引入了两个概念
+
+![](file:///Users/huangxihao/Library/Application%20Support/marktext/images/2023-09-27-21-20-40-image.png?msec=1699348529412)
+
+第一个概念是不动点 ，在这里就不多说
+
+第二个概念是收缩映射，就是映射之后的差值要比原来小
+
+有了上面两个概念之后，有一个强大的定理
+
+![](file:///Users/huangxihao/Library/Application%20Support/marktext/images/2023-09-27-21-29-20-image.png?msec=1699348529413)
+
+这样就可以知道贝尔曼最优公式有解且不断迭代即可得到
+
+ss s
+
+![](file:///Users/huangxihao/Library/Application%20Support/marktext/images/2023-10-11-22-13-38-image.png?msec=1699348529413)
+
+贝尔曼最优公式 红色代表已知量，黑色代表未知量
+
+所以可以发现影响最优策略的因素有模型，奖励函数，以及衰减率
+
+而系统模型难改变，所以不做考虑
+
+![](file:///Users/huangxihao/Library/Application%20Support/marktext/images/2023-10-11-22-17-01-image.png?msec=1699348529407)
+
+上面这张图是一个例子，当衰减率比较小的时候，会比较远视，这时候反而说穿过障碍会得到更好的结果，但是这不符合要求
+
+为了解决这个问题，可以让衰减率变大，这样就会比较近视
+
+或者提高惩罚力度，也会让需求得到满足
